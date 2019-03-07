@@ -21,5 +21,29 @@
          <?php endfor;?>
       </ul>
    </aside>
+
+   <aside id="chats">
+      <?php for ($i=1; $i<=4; $i++):?>
+         <div class="window" id="janela_x">
+            <div class="header_window"><a href="#" class="close">X</a> <span class="name">Viado Boiola</span> <span class="status on" id="5"></span></div>
+            <div class="body">
+               <div class="mensagens">
+                  <ul>
+                     <?php for ($n=1; $n<=8; $n++):?>
+                        <li class="eu"><p>Este é um exemplo de mensagem</p></li>
+                        <li class="">
+                           <div class="imgSmall"><img src="fotos/default.jpg" border="0" /></div>
+                           <p>Este é um exemplo de mensagem</p>
+                        </li> 
+                     <?php endfor;?>   
+                  </ul>
+               </div>
+               <div class="send_message" id="3:5">
+                  <input type="text" name="mensagem" class="msg" id="3:5">
+               </div>
+            </div>
+         </div>
+      <?php endfor;?>   
+   </aside>
 </body>
 </html>
