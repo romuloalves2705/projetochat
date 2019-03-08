@@ -158,6 +158,24 @@ background: #ccc;
    background: #a4e9ff;
 }
 
+.mensagens::-webkit-scrollbar {
+   width: 5px;
+}
+
+.mensagens::-webkit-scrollbar-track {
+   background-color: #666;
+   border-left: 0.5px solid #ebebeb;
+   border-right: 0.5px solid #ebebeb;
+}
+
+.mensagens::-webkit-scrollbar-thumb {
+   background-color: #666;
+}
+
+.mensagens::-webkit-scrollbar-thumb:hover {
+   background-color: #069;
+}
+
 .mensagens ul li .imgSmall {
    position: absolute;
    width: 35px;
@@ -185,89 +203,3 @@ background: #ccc;
    outline: none;
 }
 
-/*.window .header_window {
-   float: left;
-   background: #00ACE6;
-   padding: 5px;
-   width: 270px;
-   position: relative;
-}
-
-.window .header_window .close {
-   text-decoration: none;
-   float: left;
-   color: white;
-   font: 16px Tahoma, arial;
-   padding: 0 10px 0 0;
-}
-
-.window .header_window .name {
-   float: left;
-   font: 16px tahoma, arial;
-   color: white;
-}
-
-.window .body {
-   float: left;
-   width: 100%;
-}
-
-.window .body .mensagens {
-   float: left;
-   width: 100%;
-   background: #ebebeb;
-   border-left: 1px solid #999;
-   border-right: 1px solid #999;
-   height: 230px;
-   overflow-y: auto;
-   overflow-x: hidden;
-   padding: 4px;
-}
-
-.mensagens ul {
-   float: left;
-   width: 100%;
-}
-
-.mensagens ul li {
-   float: rigth;
-   width: 80%;
-   background: linear-gradient(to bottom, #fff, #ccc 130%);
-   border: 1px solid #999;
-   border-radius: 4px;
-   position: relative;
-   padding: 4px;
-   margin-bottom: 7px;
-}
-
-.mensagens ul li .imgSmall {
-   position: absolute;
-   width: 35px;
-   height: 35px;
-   left: -45px;
-}
-
-.mensagens ul li p {
-   font: 13px tahoma, arial;
-   color: #666;
-}
-
-.mensagens ul li .eu {
-   float: left;
-   background: #a4e9ff; 
-}
-
-.window .body .send_message {
-   float: left;
-   width: 100%; 
-   position: relative;
-}
-
-.window .body .send_message input {
-   float: left;
-   width: 100%;
-   padding: 3px;
-   background: white;
-   border: 1px solid #999;
-   outline: none;
-}*/

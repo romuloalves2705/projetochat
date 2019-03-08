@@ -1,49 +1,91 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <meta http-equiv="X-UA-Compatible" content="ie=edge">
    <title>Chat Romulo</title>
    <link rel="icon" href="fotos/favicon1">
-   <link rel="stylesheet" href="css/style.css" type="text/css" >
-   <script type="text/javasript" src="js/jquery.js"></script>
+   <style type="text/css">
+      *{
+         margin:0;
+         padding:0;
+         box-sizing: border-box;
+      }
+      body {
+         background: #ebebeb;
+      }
+      .right {
+         float: right;
+         /*margin-right: 44%;*/
+      }
+      .botao{
+         padding: 6px 8px;
+         background: linear-gradient(to bottom, #069, #09f 130%);
+         border:1px solid white;
+         font: 16px tahoma,arial;
+         color: white;
+         border-radius: 5px;
+         text-align: center;
+      }
+      .formulario {
+         position: absolute;
+         top: 50%;
+         left: 50%;
+         width: 500px;
+         height: 200px;
+         background: white;
+         border-radius: 6px;
+         margin-left: -250px;
+         margin-top: -100px;
+         padding: 10px;
+         box-shadow: #666 2px 1px 10px;
+      }
+      h1 {
+         float: left;
+         width: 100%;
+         margin-bottom: 10px;
+         font: 24px "Trebuchet MS", tahoma, arial;
+         font-weight: bold;
+         color: #069;
+         padding: 5px;
+         text-align: center;
+      }
+      .formulario label {
+         float: left;
+         width: 100%;
+      }
+      .formulario label span {
+         float: left;
+         width: 100%;
+         font: 15px Tahoma, arial;
+         color: #666;
+         margin-bottom: 10px;
+      }
+      .formulario label input {
+         float: left;
+         width: 100%;
+         padding: 6px;
+         background: white;
+         border-radius: 5px;
+         border: 1px solid #999;
+         margin-bottom: 10px;
+         outline: none;
+      }
+   </style>
 </head>
 <body>
-   <aside id="users_online">
-      <ul>
-         <?php for($i=1; $i<=8; $i++):?>
-            <li id="5">
-               <div class="imgSmall"><img src="fotos/romulo.jpg" border="0"/></div>
-               <a href="#" id="3:5" class="comecar">Rômulo Alves</a>
-               <span id="5" class="status on"></span>
-            </li>
-         <?php endfor;?>
-      </ul>
-   </aside>
-
-   <aside id="chats">
-      <?php for ($i=1; $i<=4; $i++):?>
-         <div class="window" id="janela_x">
-            <div class="header_window"><a href="#" class="close">X</a> <span class="name">Viado Boiola</span> <span class="status on" id="5"></span></div>
-            <div class="body">
-               <div class="mensagens">
-                  <ul>
-                     <?php for ($n=1; $n<=8; $n++):?>
-                        <li class="eu"><p>Este é um exemplo de mensagem</p></li>
-                        <li class="">
-                           <div class="imgSmall"><img src="fotos/default.jpg" border="0" /></div>
-                           <p>Este é um exemplo de mensagem</p>
-                        </li> 
-                     <?php endfor;?>   
-                  </ul>
-               </div>
-               <div class="send_message" id="3:5">
-                  <input type="text" name="mensagem" class="msg" id="3:5">
-               </div>
-            </div>
-         </div>
-      <?php endfor;?>   
-   </aside>
+   <div class="formulario">
+      <h1>Bem vindo ao chat, faça o login</h1>
+      <form action="" method="post" enctype="multipart/form-data">
+         <label >
+            <span>Informe seu e-mail</span>
+            <input type="text" name="email" placeholder="Se e-mail aqui." />
+         </label>
+         <input type="submit" value="Entrar" class="botao right"/>
+      </form>
+   </div>
 </body>
-</html>
+
+</html> 
