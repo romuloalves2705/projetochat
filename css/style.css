@@ -9,7 +9,7 @@ body {
 }
 
 ul {
-   list-style: none; 
+   list-style-type: none; 
 }
 
 #users_online {
