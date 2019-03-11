@@ -24,16 +24,39 @@ jQuery(function(){
       var splitIds = id.split(':');
       var idJanela = Number(splitIds[1]);
 
+      //var nome = jQuery(this).text();
+      //add_janela(id, nome, status);
+
       if(jQuery('#janela_'+idJanela).length == 0) {
-      var nome = jQuery(this).text();
-      add_janela(id, nome, status);
-      }else {
-      jQuery(this).removeClass('comecar');
-      }
+         var nome = jQuery(this).text();
+         add_janela(id, nome, status);
+         }else {
+         jQuery(this).removeClass('comecar');
+         }
    });
+   // Funçao minimizar janela //
+   jQuery('body').on('click', '.header_window', function() {
+      var next = jQuery(this).next();
+      next.toggle(100);
+   });
+   // Funçao fechar janela //
+   jQuery('body').on('click', '.close', function() {
+      var parent = jQuery(this).parent().parent();
+      var idParent = parent.attr('id');
+      var splitParent = idParent.split('_');
+      var idJanelaFechada = Number(splitParent[1]);
 
+      var contagem = Number(jQuery('.window').length)-1;
+      var indice = Number(jQuery('.close').index(this));
+      //alert(indice);
+      var restamAFrente = contagem-indice;
 
-
+      for(var i = 1; i <= restamAFrente; i++) {
+         jQuery('.window:eq('+(indice+i)+')').animate({left:"-=275"}, 200);
+      }
+      parent.remove();
+      jQuery('#users_online li#'+idJanelaFechada+' a').addClass('comecar');
+   });
 
 
 });
