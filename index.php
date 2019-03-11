@@ -95,12 +95,16 @@
                if($pegaUser->rowCount() == 0) {
                   echo 'Não encontramos este login!';
                }else {
-                  while($row = $pegaUser->fetchObject()) {
-                     $_SESSION['email_logado'] = $email;
-                     $_SESSION['id_user'] = $row->id;
-                     header("Location: chat.php");
-
-                  }
+                  $agora = date('Y-m-d H:i:s');
+                  $limite = date('Y-m-d H:i:s', strtotime('+3 min'));
+                  $update = BD::conn()->prepare("UPDATE `usuarios` SET `horario` = ?, `limite` = ? WHERE `email` = ? ");
+                  if($update->execute(array($agora, $limite, $email)) ) {
+                     while($row = $pegaUser->fetchObject()) {
+                        $_SESSION['email_logado'] = $email;
+                        $_SESSION['id_user'] = $row->id;
+                        header("Location: chat.php");
+                     }
+                  }// Se atualizou
                }
             }
          }

@@ -12,6 +12,13 @@
    $pegaUser->execute(array($_SESSION['email_logado']));
    $dadosUser = $pegaUser->fetch();
    //print_r($dadosUser);
+
+   if(isset($_GET['acao']) && $_GET['acao'] == 'sair') {
+      unset($_SESSION['email_logado']);
+      unset($_SESSION['id_user']);
+      session_destroy();
+      header("Location: index.php");
+   }
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -33,15 +40,30 @@
 </head>
 <body>
    <span class="user_online" id="<?php echo $dadosUser['id'];?>"></span>
+   <h2>Bem vindo, <?php echo $dadosUser['nome'];?></h2>
+   <a href="?acao=sair">Sair</a>
    <aside id="users_online">
       <ul>
-         <?php for($i=1; $i<=8; $i++):?>
-            <li id="5">
-               <div class="imgSmall"><img src="fotos/romulo.jpg" border="0"></div>
-               <a href="#" id="3:5" class="comecar">Rômulo Alves</a>
-               <span id="5"class="status on"></span>
+         <?php 
+            $pegaUsuarios = BD::conn()->prepare("SELECT * FROM `usuarios` WHERE `id` != ?");
+            $pegaUsuarios->execute(array($_SESSION['id_user']));
+
+            while($row = $pegaUsuarios->fetch()){
+               $foto = ($row['foto'] == '') ? 'default.jpg' : $row['foto'];
+               $blocks = explode(',', $row['blocks']);
+               $agora = date('Y-m-d H:i:s');
+               if(!in_array($_SESSION['id_user'], $blocks)){
+                  $status = 'on';
+                  if($agora >= $row['limite']) {
+                     $status = 'off';
+                  }
+         ?>
+            <li id="<?php echo $row['id'];?>">
+               <div class="imgSmall"><img src="fotos/<?php echo $foto;?>" border="0"></div>
+               <a href="#" id="<?php echo $_SESSION['id_user'].':'.$row['id'];?>" class="comecar"><?php echo utf8_encode($row['nome']);?></a>
+               <span id="<?php echo $row['id'];?>"class="status <?php echo $status;?>"></span>
             </li>
-         <?php endfor;?>
+            <?php }}?>   
       </ul>
    </aside>
    <!-- Janelas Chats -->
