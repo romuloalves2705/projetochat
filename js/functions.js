@@ -1,6 +1,6 @@
 jQuery(function(){
-   
-   //var userOnline = Number(jQuery('span.user_online').atrr('id'));
+   var userOnline = Number(jQuery('span.user_online').attr('id'));
+
    // Adicionar Janela
    function add_janela(id, nome, status) {
       var janelas = Number(jQuery('#chats .window').length);
@@ -56,6 +56,28 @@ jQuery(function(){
       }
       parent.remove();
       jQuery('#users_online li#'+idJanelaFechada+' a').addClass('comecar');
+   });
+   // Função enviar Mensagem //
+   jQuery('body').on('keyup', '.msg', function(e) {
+      //alert(e.which);
+      if (e.which == 13) {
+         var texto = jQuery(this).val();
+         var id = jQuery(this).attr('id'); 
+         var split = id.split(':');
+         var para = Number(split[1]);
+         jQuery.ajax({
+            type: 'POST', 
+            url: 'sys/submit.php', 
+            data: {mensagem: texto, de: userOnline, para: para},
+            success: function(retorno) {
+               if(retorno == 'ok') {
+                  jQuery('.msg').val('');
+               } else { 
+                  alert("Ocorreu um erro ao enviar a mensagem"); 
+               }
+            }
+         });
+      }
    });
 
 

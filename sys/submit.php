@@ -5,7 +5,7 @@
       require_once('../classes/BD.class.php');
       BD::conn();
 
-      $mensagem = utf8_decode( strip_tags(trim(filter_input(INPUT_POST, 'mensagem', FILTER_SANITIZE_STRING))) );
+      $mensagem = utf8_decode(strip_tags(trim(filter_input(INPUT_POST, 'mensagem', FILTER_SANITIZE_STRING))) );
       $de = (int)$_POST['de'];
       $para = (int)$_POST['para'];
 
