@@ -1,3 +1,9 @@
+<?php
+   session_start();
+   include_once "defines.php";
+   require_once('classes/BD.class.php');
+   BD::conn();
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -77,11 +83,34 @@
 <body>
    <div class="formulario">
       <h1>Seja bem vindo ao chat faça se login</h1>
+      <?php
+         if(isset($_POST['acao']) && $_POST['acao'] == 'logar') {
+            $email = strip_tags(trim(filter_input(INPUT_POST, 'email', FILTER_SANITIZE_STRING)));
+            if($email == '') {
+               echo 'Informe seu email';
+            }else {
+               $pegaUser = BD::conn()->prepare("SELECT * FROM `usuarios` WHERE `email` = ?");
+               $pegaUser->execute(array($email));
+
+               if($pegaUser->rowCount() == 0) {
+                  echo 'Não encontramos este login!';
+               }else {
+                  while($row = $pegaUser->fetchObject()) {
+                     $_SESSION['email_logado'] = $email;
+                     $_SESSION['id_user'] = $row->id;
+                     header("Location: chat.php");
+
+                  }
+               }
+            }
+         }
+      ?>
       <form action="" method="post" enctype="multipart/form-data">
          <label>
             <span>Informe seu e-mail</span>
             <input type="text" name="email" placeholder="Seu e-mail aqui">
          </label>
+         <input type="hidden"  name="acao" value="logar">
          <input type="submit" value="Entrar" class="botao right">
       </form>
    </div>
