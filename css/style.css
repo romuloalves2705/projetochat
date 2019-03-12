@@ -150,8 +150,8 @@ background: #ccc;
    border-radius: 4px;
    position: relative;
    padding: 4px;
-   margin-bottom: 7px;
-   align-items:center;
+   margin-bottom: 12px;
+   /*align-items:center;*/
 }
 
 .mensagens ul li.eu {
@@ -182,6 +182,10 @@ background: #ccc;
    width: 35px;
    height: 35px;
    left: -45px;
+   margin-top: -8px;
+   margin-bottom: 10px;
+   /*margin-top: -8px;
+   margin-bottom: 10px;*/
 }
 
 .mensagens ul li p {

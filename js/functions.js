@@ -15,6 +15,30 @@ jQuery(function(){
 
       jQuery('#chats').append(janela);
    }
+   // Função Historico mensagem //
+   function retorna_historico(id_conversa){
+      jQuery.ajax({
+         type: 'POST',
+         url: 'sys/historico.php',
+         data: {conversacom: id_conversa, online:userOnline},
+         dataType: 'json',
+         success: function(retorno) {
+            jQuery.each(retorno, function(i, msg) {
+               if(jQuery('#janela_'+msg.janela_de).length > 0) {
+                  if(userOnline == msg.id_de) {
+                     jQuery('#janela_'+msg.janela_de+' .mensagens ul').append('<li id="'+msg.id+'" class="eu"><p>'+msg.mensagem+'</p></li>');
+                  }else {
+                     jQuery('#janela_'+msg.janela_de+' .mensagens ul').append('<li id="'+msg.id+'"><div class="imgSmall"><img src="fotos/'+msg.fotoUser+'"></div><p>'+msg.mensagem+'</p></li>');
+
+                  }
+               }
+            });
+            [].reverse.call(jQuery('#janela_'+id_conversa+'.mensagens li')).appendTo(jQuery('#janela_'+id_conversa+' .mensagens ul'));
+            var altura = jQuery('#janela_'+id_conversa+' .mensagens').height();
+            jQuery('#janela_'+id_conversa+' .mensagens').animate({scrollTop: altura}, '500');
+         }
+      });
+   }
    /* Funçao abri janela */
    jQuery('body').on('click', '#users_online a', function() {
       var id = jQuery(this).attr('id');
@@ -30,6 +54,7 @@ jQuery(function(){
       if(jQuery('#janela_'+idJanela).length == 0) {
          var nome = jQuery(this).text();
          add_janela(id, nome, status);
+         retorna_historico(idJanela);
          }else {
          jQuery(this).removeClass('comecar');
          }
